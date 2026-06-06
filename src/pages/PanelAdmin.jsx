@@ -3,8 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes, faTrashAlt, faUserGraduate, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { db } from "../firebaseConfig";
 import { collection, getDocs, query, doc, updateDoc, deleteDoc } from "firebase/firestore";
-
-// 1. IMPORTANTE: Importa SweetAlert2 y SU CSS para que se vea centrado
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css'; 
 
@@ -48,7 +46,7 @@ const PanelAdmin = () => {
       const alumnoRef = doc(db, "inscripciones", id);
       await updateDoc(alumnoRef, { estatus: nuevoEstatus });
       
-      // Feedback visual rápido (Toast)
+      
       Swal.fire({
         toast: true,
         position: 'top-end',
@@ -66,19 +64,18 @@ const PanelAdmin = () => {
     }
   };
 
-  // 2. FUNCIÓN CORREGIDA: Ya no usa window.confirm
   const eliminarAlumno = async (id) => {
     Swal.fire({
       title: '¿Eliminar registro?',
       text: "Esta acción no se puede deshacer.",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#6c1d45', // Color guinda institucional
+      confirmButtonColor: '#6c1d45', 
       cancelButtonColor: '#3085d6',
       confirmButtonText: 'Sí, eliminar',
       cancelButtonText: 'Cancelar',
-      background: '#1a1a1a', // Fondo oscuro
-      color: '#fff'         // Texto blanco
+      background: '#1a1a1a', 
+      color: '#fff'       
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {

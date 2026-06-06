@@ -57,7 +57,7 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Home />} />
         
-        {/* LA RUTA DE EXPEDIENTES YA BIEN PUESTA */}
+        {}
         <Route
           path="/visualizar-documentos"
           element={

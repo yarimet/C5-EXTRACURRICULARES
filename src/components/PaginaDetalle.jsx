@@ -2,7 +2,6 @@ import React from 'react';
 import './PaginaDetalle.css'; // Importa el estilo que crearemos abajo
 
 const PaginaDetalle = ({ actividad, usuarioLogueado }) => {
-  // Asegúrate de que 'actividad' tenga las propiedades: nombre, descripcion, imagenFondo
   
   return (
     <div 
@@ -13,7 +12,7 @@ const PaginaDetalle = ({ actividad, usuarioLogueado }) => {
         <h1>{actividad.nombre}</h1>
         <p>{actividad.descripcion}</p>
 
-        {/* Lógica condicional */}
+        {}
         {!usuarioLogueado ? (
           <button className="btn-login" onClick={() => window.location.href = '/login'}>
             Iniciar Sesión para inscribirte

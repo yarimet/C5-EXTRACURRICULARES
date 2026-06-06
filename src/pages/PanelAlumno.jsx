@@ -46,7 +46,6 @@ const PanelAlumno = () => {
       } catch (error) {
         console.error("Error crítico:", error);
       } finally {
-        // Delay para que el burro luzca y la transición sea suave
         setTimeout(() => setCargando(false), 800);
       }
     };
@@ -131,10 +130,10 @@ const PanelAlumno = () => {
 
   return (
     <>
-      {/* 1. Loader con el burro que creamos */}
+      {}
       {cargando && <LoadingScreen visible={cargando} />}
 
-      {/* 2. Contenido Real (Solo se monta si NO está cargando) */}
+      {}
       {!cargando && (
         <div className="dashboard-container animate-fade-in">
           <div className="dashboard-content">
@@ -166,7 +165,7 @@ const PanelAlumno = () => {
   </div>
   
   <div className="inscripcion-info-grid">
-    {/* ... otros items ... */}
+    {}
     
     <div className="info-item">
       <span>Estado:</span>
@@ -178,7 +177,7 @@ const PanelAlumno = () => {
       </p>
     </div>
     
-    {/* ... resto de los items ... */}
+    {}
   </div>
 
   <div className="action-footer">

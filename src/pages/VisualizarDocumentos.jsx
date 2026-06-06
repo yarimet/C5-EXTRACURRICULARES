@@ -8,8 +8,6 @@ import '../styles/global.css';
 const VisualizarDocumentos = () => {
   const [alumnos, setAlumnos] = useState([]);
   const [busqueda, setBusqueda] = useState("");
-  
-  // Estados para el Modal
   const [alumnoSeleccionado, setAlumnoSeleccionado] = useState(null);
   const [mostrarModal, setMostrarModal] = useState(false);
 
@@ -38,13 +36,13 @@ const VisualizarDocumentos = () => {
 
  return (
     <div className="admin-container animate-fade-in">
-      {/* HEADER CORREGIDO PARA CENTRADO TOTAL */}
+      {}
       <header className="admin-header-simple" style={{ 
           display: 'flex', 
           flexDirection: 'column', 
           alignItems: 'center', 
           textAlign: 'center',
-          paddingTop: '100px' // Esto baja el título para que no choque con el menú
+          paddingTop: '100px'
       }}>
         <h1 className="main-title" style={{ margin: '0 auto' }}>
             EXPEDIENTES C5
@@ -53,7 +51,7 @@ const VisualizarDocumentos = () => {
             Visualización de Documentación Oficial
         </p>
         
-        {/* El buscador ahora también heredará el centrado del padre */}
+        {}
         <div className="search-box-expedientes glass-card" style={{ margin: '0 auto' }}>
           <FontAwesomeIcon icon={faSearch} className="search-icon" />
           <input 
@@ -92,7 +90,7 @@ const VisualizarDocumentos = () => {
         ))}
       </div>
 
-      {/* --- MODAL DE DETALLES --- */}
+      {}
       {mostrarModal && alumnoSeleccionado && (
         <div className="modal-overlay" onClick={cerrarModal}>
           <div className="modal-content glass-card animate-pop-in" onClick={e => e.stopPropagation()}>

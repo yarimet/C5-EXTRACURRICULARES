@@ -6,7 +6,6 @@ import "../styles/global.css";
 
 const Registro = () => {
   const navigate = useNavigate();
-  // El rol ahora es fijo 'alumno', ya no hay select para elegir
   const [formData, setFormData] = useState({ nombre: '', correo: '', password: '', identificador: '' });
   const [errores, setErrores] = useState({});
   const [cargando, setCargando] = useState(false);
@@ -31,7 +30,7 @@ const Registro = () => {
           nombre: formData.nombre,
           correo: formData.correo,
           password: formData.password,
-          rol: 'alumno', // <-- FORZADO SIEMPRE A ALUMNO
+          rol: 'alumno', 
           identificador: formData.identificador,
           fechaRegistro: new Date().toISOString()
         });

@@ -23,12 +23,8 @@ const FormularioInscripcion = () => {
   const [loading, setLoading] = useState(false);
   const [enviado, setEnviado] = useState(false);
   const [folioGenerado, setFolioGenerado] = useState("");
-// ... dentro de FormularioInscripcion ...
-
-// Cambia esto a true para probar el estado de "Lugares llenos"
 const cuposLlenos = true; 
 
-// ... dentro del return, localiza el botón al final del formulario ...
 
 <button 
   type="submit" 
@@ -73,15 +69,14 @@ const cuposLlenos = true;
   if (name === "hojaInscripcion") {
     const archivo = files[0];
     
-    // Lista de tipos permitidos
     const tiposPermitidos = ["application/pdf", "image/jpeg", "image/png"];
 
     if (archivo && tiposPermitidos.includes(archivo.type)) {
       setFormData({ ...formData, [name]: archivo });
     } else {
       alert("⚠️ Tipo de archivo no permitido. Solo se aceptan PDF, JPG o PNG.");
-      e.target.value = ""; // Limpia el input
-      setFormData({ ...formData, [name]: null }); // Resetea el estado
+      e.target.value = ""; 
+      setFormData({ ...formData, [name]: null }); 
     }
   } else {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -94,7 +89,6 @@ const cuposLlenos = true;
     setLoading(true);
 
     try {
-      // A. VALIDACIÓN DE DUPLICADOS
       const q = query(collection(db, "inscripciones"), where("correoInst", "==", formData.correoInst));
       const querySnapshot = await getDocs(q);
       if (!querySnapshot.empty) {
@@ -103,7 +97,6 @@ const cuposLlenos = true;
         return;
       }
 
-      // B. SUBIDA DE ARCHIVO A CLOUDINARY
       let urlArchivo = null;
       const archivoReal = formData.hojaInscripcion;
 
@@ -125,7 +118,6 @@ const cuposLlenos = true;
         }
       }
 
-      // C. GUARDAR EN FIRESTORE
       const nuevoFolio = "IPN-" + Math.floor(Math.random() * 100000);
       const datosInscripcion = {
         ...formData, 
@@ -138,8 +130,6 @@ const cuposLlenos = true;
 
       await addDoc(collection(db, "inscripciones"), datosInscripcion);
 
-      // --- CAMBIO CLAVE AQUÍ ---
-      // En lugar de setEnviado(true), navegamos directo
       navigate("/panel-alumno"); 
 
     } catch (error) {
@@ -160,7 +150,7 @@ const cuposLlenos = true;
               <h3 className="form-section">Datos personales</h3>
               <input name="nombre" placeholder="Nombre completo" value={formData.nombre} onChange={handleChange} required />
               <input name="boleta" placeholder="Boleta" value={formData.boleta} onChange={handleChange} required />
-              {/* Cambia el input de edad por este */}
+              {}
 <input 
   type="number" 
   name="edad" 
@@ -181,7 +171,7 @@ const cuposLlenos = true;
               <CustomSelect name="carrera" label="Carrera" options={["Contaduría", "Informática", "Comercio Internacional", "Tronco común"]} value={formData.carrera} onChange={handleChange} />
               <input name="semestre" placeholder="Grupo" value={formData.semestre} onChange={handleChange} />
               <CustomSelect name="turno" label="Turno" options={["Matutino", "Vespertino"]} value={formData.turno} onChange={handleChange} />
-             {/* Cambia el input de promedio por este */}
+             {}
 <input 
   type="number" 
   step="0.1" 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import "../styles/global.css";
-// Importamos lo necesario de Firebase
 import { db } from "../firebaseConfig";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
@@ -9,11 +8,11 @@ const DetalleActividad = ({ sesionIniciada }) => {
   const { state: datos } = useLocation();
   const navigate = useNavigate();
   
-  // Estados originales
+  
   const [yaInscrito, setYaInscrito] = useState(false);
   const [cargandoValidacion, setCargandoValidacion] = useState(true);
 
-  // NUEVOS ESTADOS PARA EL CUPO
+
   const [cuposOcupados, setCuposOcupados] = useState(0);
   const [cargandoCupos, setCargandoCupos] = useState(true);
 
@@ -22,9 +21,6 @@ const DetalleActividad = ({ sesionIniciada }) => {
 
   useEffect(() => {
     if (datos) localStorage.setItem('actividadActual', JSON.stringify(datos));
-
-    // 1. Verificar si el alumno ya está inscrito
-   // ... dentro del useEffect ...
 
 const verificarRegistro = async () => {
   if (usuario?.rol === "alumno") {
@@ -36,12 +32,7 @@ const verificarRegistro = async () => {
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
-        // Obtenemos los datos de la inscripción encontrada
         const datosInscripcion = querySnapshot.docs[0].data();
-
-        // BLOQUEO DINÁMICO:
-        // Solo bloqueamos si el estatus es "Aceptado" o "En revisión".
-        // Si el estatus es "Rechazado", permitimos que setYaInscrito sea false.
         if (datosInscripcion.estatus !== "Rechazado") {
           setYaInscrito(true);
         } else {
@@ -57,15 +48,12 @@ const verificarRegistro = async () => {
   setCargandoValidacion(false);
 };
 
-// ... resto del código ...
-    // 2. NUEVA FUNCIÓN: Contar cuántos lugares están ocupados
    const obtenerLugaresOcupados = async () => {
   if (datosFinales?.nombre) {
     try {
       const qCupos = query(
         collection(db, "inscripciones"),
         where("actividad", "==", datosFinales.nombre),
-        // Eliminamos el filtro de "Aceptado" para contar a todos los que están en proceso
         where("estatus", "in", ["Aceptado", "En revisión"]) 
       );
       const snapshotCupos = await getDocs(qCupos);
@@ -86,13 +74,11 @@ const verificarRegistro = async () => {
     navigate('/actividades');
     return null;
   }
-
-  // --- LÓGICA MATEMÁTICA DEL CUPO ---
   const esIlimitado = datosFinales.cupo === "Ilimitado";
   const cupoMaximo = parseInt(datosFinales.cupo) || 0;
-  // Calculamos cuántos quedan
+
   const lugaresDisponibles = esIlimitado ? "Ilimitados" : cupoMaximo - cuposOcupados;
-  // Determinamos si ya se llenó
+
   const estaLleno = !esIlimitado && lugaresDisponibles <= 0;
 
   return (
@@ -120,7 +106,7 @@ const verificarRegistro = async () => {
               <div className="info-card"><h3>Horario</h3><p>{datosFinales.horario}</p></div>
               <div className="info-card">
                 <h3>Lugares Disponibles</h3>
-                {/* Mostramos dinámicamente los lugares que quedan */}
+                {}
                 <p style={{ fontWeight: 'bold', color: estaLleno ? '#e74c3c' : '#2ecc71', fontSize: '1.2rem' }}>
                   {cargandoCupos ? "Calculando..." : estaLleno ? "0 (Lleno)" : `${lugaresDisponibles} de ${datosFinales.cupo}`}
                 </p>
@@ -128,7 +114,7 @@ const verificarRegistro = async () => {
             </div>
 
             <div style={{ textAlign: 'center', marginTop: '40px' }}>
-             {/* ... dentro del div de alineación central ... */}
+             {}
 {usuario?.rol === "alumno" && (
   <>
     {cargandoValidacion || cargandoCupos ? (
@@ -145,7 +131,7 @@ const verificarRegistro = async () => {
     ) : estaLleno ? (
       <div className="mensaje-cupo-lleno">
         <p style={{ color: '#e74c3c', fontWeight: 'bold', marginBottom: '10px' }}>
-          ❌ Lo sentimos, el cupo para esta actividad se ha agotado.
+         Lo sentimos, el cupo para esta actividad se ha agotado.
         </p>
         <button 
           className="form-button btn-lleno" 

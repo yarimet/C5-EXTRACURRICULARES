@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import LoadingScreen from '../components/LoadingScreen'; // Asegúrate de que la ruta sea correcta
+import LoadingScreen from '../components/LoadingScreen'; 
 import '../styles/global.css';
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // El burro aparecerá por 1.5 segundos antes de mostrar el C5
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1500);
@@ -14,12 +13,10 @@ const Home = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Mientras loading sea true, se muestra el burro animado
   if (loading) {
     return <LoadingScreen />;
   }
 
-  // Una vez que termina de cargar, se muestra tu tarjeta de Home
   return (
     <div className="home-container">
       <div className="glass-card">

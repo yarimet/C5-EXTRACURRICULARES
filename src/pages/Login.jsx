@@ -15,11 +15,9 @@
     const location = useLocation();
 
     useEffect(() => {
-      // RELLENO AUTOMÁTICO DESDE REGISTRO
       if (location.state?.usuarioPrellenado) {
         setCorreo(location.state.usuarioPrellenado);
       }
-      // Rellenamos la contraseña también como querías
       if (location.state?.passwordPrellenada) {
         setPassword(location.state.passwordPrellenada);
       }
@@ -32,8 +30,6 @@
 
     try {
       const campoBusqueda = rol === "maestro" ? "identificador" : "correo";
-      
-      // 1. Primero buscamos si el usuario existe (sin validar la contraseña todavía)
       const qUsuario = query(
         collection(db, "usuarios"), 
         where(campoBusqueda, "==", correo)
@@ -42,25 +38,21 @@
       const querySnapshot = await getDocs(qUsuario);
 
       if (querySnapshot.empty) {
-        // SI NO EXISTE EL USUARIO
         setError(rol === "maestro" 
           ? "Número de empleado incorrecto. Verifique." 
           : "Correo incorrrecto. Verifique o cree una cuenta.");
       } else {
-        // SI EXISTE, ahora verificamos la contraseña
         const usuarioData = querySnapshot.docs[0].data();
         
         if (usuarioData.password === password) {
-    // 1. Guardamos primero
+    
     localStorage.setItem("usuario_sesion", JSON.stringify(usuarioData));
     
-    // 2. Avisamos al estado global (onLogin)
     onLogin(usuarioData.rol); 
     
-    // 3. Navegamos (Usa replace: true para que no pueda volver atrás al login)
     navigate(usuarioData.rol === "maestro" ? "/panel-admin" : "/panel-alumno", { replace: true });
   } else {
-          // CONTRASEÑA MAL
+        
           setError("Contraseña incorrecta. Inténtelo de nuevo.");
         }
       }
@@ -78,7 +70,7 @@
           <h1 className="main-title">Bienvenido</h1>
           <p className="italic-subtitle">SISTEMA DE ACTIVIDADES</p>
 
-          {/* TU CUADRO DE ERROR ELEGANTE EN EL CENTRO */}
+          {}
           {error && (
             <div className="error-badge">
               <span className="error-icon">⚠️</span>
@@ -127,7 +119,7 @@
                 type="password" 
                 className="custom-input" 
                 placeholder="••••••" 
-                value={password} // Agregado para que se vea la contraseña prellenada
+                value={password} 
                 required 
                 onChange={(e) => { setPassword(e.target.value); setError(""); }} 
               />

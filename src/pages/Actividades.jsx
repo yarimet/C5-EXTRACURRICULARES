@@ -2,8 +2,6 @@
   import { useNavigate } from 'react-router-dom';
   import ActividadCard from '../components/ActividadCard';
   import '../styles/global.css';
-
-  // 1. IMPORTACIONES DE IMÁGENES
   import imgVoleibol from '../assets/voleibol.jpg';
   import imgTaeKwonDo from '../assets/TAE KWON DO.jpg';
   import imgFutbol from '../assets/FÚTBOL SOCCER.webp';
@@ -36,7 +34,6 @@
   }
 };
 
-    // 2. LISTA ÚNICA Y BIEN ESTRUCTURADA
     const listaActividades = [
       { nombre: "Voleibol", imagen: imgVoleibol, profesor: "Aarón Oliva Maheda", horario: "Lu, Mi, Vi: 10:00-13:00 / 15:00-16:00", lugar: "Canchas", cupo: "20", descripcion: "Desarrolla habilidades en la cancha." },
       { nombre: "Tae Kwon Do", imagen: imgTaeKwonDo, profesor: "Juan Carlos Rubio G.", horario: "Lu, Mi, Vi: 11:00-13:00 / 14:00-16:00", lugar: "Salón de Usos Múltiples", cupo: "15", descripcion: "Disciplina y defensa personal." },
@@ -55,14 +52,14 @@
 
     return (
   <div className="home-container">
-    {/* Cambiamos main-title por titulo-actividades-page */}
+    {}
     <h1 className="titulo-actividades-page">Actividades disponibles</h1>
         
         <div className="cards-grid">
           {listaActividades.map((act, index) => (
             <ActividadCard 
               key={index}
-              {...act} // ¡Aquí pasas la imagen y todo lo demás automáticamente!
+              {...act} 
               estado="Abierto"
               sesionIniciada={sesionIniciada}
               onInscribir={abrirConfirmacion}

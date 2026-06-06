@@ -9,7 +9,7 @@ const Navbar = ({ sesionIniciada, onLogout }) => {
       <div className="nav-links">
         <Link to="/" className="nav-item">INICIO</Link>
         
-        {/* Aquí la lógica limpia: si es admin va a Expedientes, si no, a Actividades */}
+        {}
         {sesionIniciada && esAdmin ? (
           <Link to="/visualizar-documentos" className="nav-item">EXPEDIENTES</Link>
         ) : (

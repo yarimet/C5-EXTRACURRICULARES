@@ -21,7 +21,6 @@ const handleVerDetalle = () => {
       descripcion: props.descripcion
     };
 
-    // NAVEGA USANDO SOLO EL OBJETO LIMPIO
     navigate(`/actividad/${idParaUrl}`, { state: datosParaNavegar });
   }, 800);
 };
