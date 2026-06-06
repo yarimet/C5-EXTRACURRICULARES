@@ -2792,67 +2792,62 @@ admin-view-table {
     display: table !important;
 }
 
-/* --- Distribución de columnas --- */
-/* Le damos pesos específicos a las columnas para que el nombre respire */
 .admin-view-table th:nth-child(1), 
 .admin-view-table td:nth-child(1) {
-    width: 35%; /* El nombre del alumno ahora tiene más espacio */
+    width: 35%; 
 }
 
 .admin-view-table th:nth-child(2), 
 .admin-view-table td:nth-child(2) {
-    width: 15%; /* Columna de boleta */
+    width: 15%;
 }
 
 .admin-view-table th:nth-child(3), 
 .admin-view-table td:nth-child(3) {
-    width: 15%; /* Columna de estado */
+    width: 15%; 
 }
 
 .admin-view-table th:nth-child(4), 
 .admin-view-table td:nth-child(4) {
-    width: 35%; /* Espacio generoso para los botones de Gestión */
+    width: 35%; 
 }
 
 
 .admin-header {
     text-align: center;
-    /* Aumentamos el padding superior de 60px a 100px o 120px */
     padding-top: 100px; 
     padding-bottom: 1px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1px; /* Espacio entre el icono del birrete y el texto */
+    gap: 1px; 
 }
 
-/* También podemos darle un pequeño respiro al icono si se ve muy cerca del borde */
 .header-icon {
     font-size: 4rem;
     margin-bottom: 0px;
-    color: #FFD700; /* El dorado que ya tenías */
-}/* Contenedor que envuelve la tarjeta del buscador */
+    color: #FFD700; 
+}
 .search-bar-container {
     width: 90%;
-    display: flex;         /* Activamos flexbox */
-    justify-content: center; /* Centra la tarjeta horizontalmente */
+    display: flex;     
+    justify-content: center; 
     margin-bottom: 5px;
-    padding: 0 10px;       /* Margen de seguridad para móviles */
+    padding: 0 10px;       
 }
 
-/* La tarjeta "Glass" del buscador */
+
 .search-bar-container.glass-card {
-    max-width: 700px;      /* Reducimos un poco el ancho para que no se vea tan estirado */
+    max-width: 700px;     
     width: 100%;
     display: flex;
-    justify-content: center; /* Centra el input dentro de la tarjeta */
+    justify-content: center; 
     padding: 20px;
 }
 
-/* El grupo que contiene la lupa y el input */
 .input-with-icon {
-    width: 100%;           /* Que use el ancho de la tarjeta */
-    max-width: 600px;      /* Pero que no pase de 600px para que se vea elegante */
+    width: 100%;         
+    max-width: 600px;      
     display: flex;
     align-items: center;
     background: rgba(255, 255, 255, 0.9);
@@ -2860,15 +2855,14 @@ admin-view-table {
     padding: 0 15px;
 }
 
-/* Esto obligará a todas las tarjetas a medir lo mismo */
 .glass-card, 
 .status-detail-card, 
 .search-bar-container.glass-card {
-    width: 100%;           /* Que intenten ocupar el ancho disponible */
-    max-width: 900px;      /* 👈 ESTE ES EL SECRETO: Pon el mismo número aquí para todas */
-    margin-left: auto;     /* Centrado automático */
-    margin-right: auto;    /* Centrado automático */
-    box-sizing: border-box; /* Para que el padding no las ensanche de más */
+    width: 100%;           
+    max-width: 900px;     
+    margin-left: auto;    
+    margin-right: auto;    
+    box-sizing: border-box; 
 }
 
 .btn-bloqueado {
@@ -2970,21 +2964,20 @@ admin-view-table {
   to { transform: scale(1); opacity: 1; }
 }
 
-/* Botón en estado de cupo agotado */
+
 .form-button.btn-lleno {
-  background-color: #b71c1c !important; /* Rojo IPN / Institucional oscuro */
+  background-color: #b71c1c !important; 
   color: #ffffff;
   cursor: not-allowed;
   border: 1px solid #7f0000;
   box-shadow: none;
-  transform: none !important; /* Evita el efecto de hundirse al hacer clic */
+  transform: none !important; 
 }
 
 .form-button.btn-lleno:hover {
-  background-color: #d32f2f !important; /* Un rojo un poco más vivo al pasar el mouse */
+  background-color: #d32f2f !important; /
 }
 
-/* Estilo para cuando el botón está deshabilitado por lógica */
 .form-button:disabled {
   filter: grayscale(0.2);
   opacity: 0.8;

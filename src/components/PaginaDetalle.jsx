@@ -1,5 +1,5 @@
 import React from 'react';
-import './PaginaDetalle.css'; // Importa el estilo que crearemos abajo
+import './PaginaDetalle.css'; 
 
 const PaginaDetalle = ({ actividad, usuarioLogueado }) => {
   
